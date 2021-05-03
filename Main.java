@@ -20,7 +20,20 @@ public class Main {
     }
   }
 
-  // NFIXME: Diese Methode implementieren
+  //Prinzip:
+  /*Es werden ausschließlich Transaktionen, mit Shop, Kategorie und Preis gespeichert.
+  Dadurch ist die Eingabe erleichtert, die Ausgabemethoden "report" und "detail" müssen
+  jedoch die Informationen verarbeiten.
+  Die geschieht, in dem zwei Listen erstellt werden.
+  Die String-Liste speichert alle Kategorien / Shops, und am selben Index i wie der dazugehörige
+  Shop oder die dazugehörige Kategorie, ist in der int-Liste "sum" die entsprechende Summe gespeichert.
+  
+  Zum Beispiel:
+  Index 0 in str: Amazon
+  Index 1 in str: Otto
+  
+  Index 0 in sum: 4, gehört zu Amazon
+  Index 1 in sum: 5, gehört zu Otto    */
   private void details(String[] parts) {
     String comp = parts[1];
 
@@ -32,36 +45,29 @@ public class Main {
 
     for(Card e: list){//Schleife, um alle Transaktionen durchzugehen
       if(e.company.equals(comp)){//Wenn Transaktion von gesuchter Firma gefunden
-        //System.out.println("Passende Comapany " + e.company + " gefunden.");
         for(int i = 0; i < cat.size();i++){//Passende Kategorie in cat suchen
           if(cat.get(i).equals(e.category)){//Wenn passende Kategorie gefunden
             double tmp = sum.get(i);
-            //System.out.println("Wert vorher: " + sum.get(i));
             tmp = tmp + e.preis; //Entsprechende Summe draufaddieren
             sum.set(i, tmp);
             found = true;
-            //System.out.println("Passende Kategorie gefunden");
             break; //Bricht aus Kategorie-Suche aus
           }
         }//Ende Kategorie-Suche
 
         if(!found){//Wenn nicht gefunden
-          //System.out.println("Kategorie nicht gefunden");
           cat.add(e.category); //Kategorie hinzufuegen
           sum.add(e.preis); //Ersten Wert auf entsprechende Stelle legen
         }
         found = false;
       }
     }
-    //System.out.println("Auswertung fertig, size: " + cat.size());
     //PRINT
     for(int i = 0; i < cat.size(); i++){
       System.out.println(cat.get(i) + ": " + sum.get(i));
     }
-    //System.out.println("Print fertig.");
   }
 
-  // NFIXME: Diese Methode implementieren
   private void report(String[] parts) {
     // Prüfen: parts hat 2 Elemente
     // 0 ist "report", 1 ist entweder "category" oder "shop"
@@ -133,7 +139,6 @@ public class Main {
     }
   }
 
-  // NFIXME: Diese Methode implementieren
   private void add(String[] parts) {
     // Prüfen: parts hat 4 Elemente
     // 0 ist "add", 1 und 2 sind String, 3 ist ein String, in dem ein Double Wert steht
@@ -149,12 +154,10 @@ public class Main {
     list.add(new Card(a, b, c));//Fügt Transaktion zu Liste hinzu
   }
 
-  // NFIXME: Diese Methode implementieren
   private void exit() {
     System.out.println("Bye.");
   }
 
-  // NFIXME: Diese Methode implementieren
   public void run() {
     boolean run = readAndProcess();
     while(run){
@@ -170,13 +173,6 @@ public class Main {
     System.out.println("Ungültige Eingabe.");
   }
 
-
-  /**
-   * Liest eine Zeile von der Eingabeaufforderung
-   * Ruft je nach erstem Wort die passende Methode auf
-   * @return Die Methode gibt true zurück, wenn das Programm
-   * nach der Verarbeitung des Kommandos weiterlaufen soll
-   */
   private boolean readAndProcess() {
     String line;
     line = in.nextLine();
