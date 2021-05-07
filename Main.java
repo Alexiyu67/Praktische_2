@@ -74,12 +74,10 @@ public class Main {
     // Bei Fehlern invalid() aufrufen und die Methode mit return beenden
     int type = 0; //0 == ungültig, 1 == category, 2 == shop
     if(parts[1].equals("category")){
-      System.out.println("Kategorie erkannt");
       type = 1;
     }
     if(parts[1].equals("shop")){
       type = 2;
-      System.out.println("Shop erkannt");
     }
     if(type == 0){
       invalid();
@@ -129,10 +127,6 @@ public class Main {
 
       }
     }
-
-
-    System.out.println("Auswertung fertig");
-    System.out.println("Size ist: "+ str.size());
     //PRINT
     for(int i = 0; i < str.size(); i++){
       System.out.println(str.get(i) + ": " + sum.get(i));
